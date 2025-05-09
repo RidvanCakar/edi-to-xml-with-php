@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<OrderRequest>
+   <OrderHeader>
+      <Snrf>173831239</Snrf>
+      <DocumentDate>20250414</DocumentDate>
+      <DocumentTime>1625</DocumentTime>
+      <SenderMailboxId>5940477285003</SenderMailboxId>
+      <ReceiverMailboxId>5940477475206</ReceiverMailboxId>
+      <OrderType>Original order</OrderType>
+      <OrderNumber>0146980931</OrderNumber>
+      <OrderDate>20250414</OrderDate>
+      <DeliveryDate>20250424</DeliveryDate>
+      <FreeTextField>STORE MANUAL ORDER DR01</FreeTextField>
+      <GLNBuyer>5940477285003</GLNBuyer>
+      <GLNShipTo>5940477285065</GLNShipTo>
+      <GLNSupplier>5940477475206</GLNSupplier>
+      <Currency>RON</Currency>
+   </OrderHeader>
+   <OrderDetails>
+      <Detail>
+         <DetailNumber>1</DetailNumber>
+         <ItemEanBarcode>5054905249274</ItemEanBarcode>
+         <ItemReceiverCode>DCD771D2-QW</ItemReceiverCode>
+         <ItemDescription>*MASINA DE GAURIT 2X2AH DCD771D2 Q</ItemDescription>
+         <ItemOrderedQuantity>10</ItemOrderedQuantity>
+         <ItemOrderedQuantityUom>EA</ItemOrderedQuantityUom>
+         <ItemNetPrice>491.61</ItemNetPrice>
+      </Detail>
+	  <Detail>
+         <DetailNumber>2</DetailNumber>
+         <ItemEanBarcode>5054905249275</ItemEanBarcode>
+         <ItemReceiverCode>DCD771D2-QW</ItemReceiverCode>
+         <ItemDescription>*MASINA DE GAURIT 2X2AH DCD771D2 Q2</ItemDescription>
+         <ItemOrderedQuantity>20</ItemOrderedQuantity>
+         <ItemOrderedQuantityUom>EA</ItemOrderedQuantityUom>
+         <ItemNetPrice>491.61</ItemNetPrice>
+      </Detail>
+   </OrderDetails>
+</OrderRequest>

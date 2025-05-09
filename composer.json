@@ -1,0 +1,21 @@
+{
+    "name": "ridvan/edi-to-xml",
+    "description": "EDIFACT to XML converter",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ridvan\\EdiToXml\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ridvan"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "monolog/monolog": "^2.10",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
