@@ -39,7 +39,7 @@ class XmlGenerator
             $this->addXmlChild($header, $field, $data[lcfirst($field)] ?? '');
         }
 
-        // Adding GLNBuyer, GLNShipTo, GLNSupplier explicitly as they are used multiple times
+        // Adding GLNBuyer, GLNShipTo, GLNSupplier manually
         $this->addXmlChild($header, 'GLNBuyer', $data['GLNBuyer'] ?? '');
         $this->addXmlChild($header, 'GLNShipTo', $data['GLNShipTo'] ?? '');
         $this->addXmlChild($header, 'GLNSupplier', $data['GLNSupplier'] ?? '');
@@ -72,7 +72,7 @@ class XmlGenerator
             }
         }
 
-        // Log the completion of the XML generation process
+        
         $this->logger->info("XML generation completed.");
         
         // Return the XML as a string

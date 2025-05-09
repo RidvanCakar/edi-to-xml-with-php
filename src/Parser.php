@@ -14,6 +14,20 @@ class Parser
         $this->logger = $logger;
     }
 
+    // Reads and returns the EDI segments from a file
+    public function readSegmentsFromFile(string $filePath): array
+    {
+        $this->logger->info("Reading EDI file: " . basename($filePath));
+
+        if (!file_exists($filePath)) {
+            $this->logger->error("File not found: $filePath");
+            throw new \Exception("File not found: $filePath");
+        }
+
+        $content = file_get_contents($filePath);
+        return explode("'", $content);
+    }
+
     // Parses the EDI segments and returns an associative array with the parsed data
     public function parse(array $segments): array
     {
@@ -60,7 +74,7 @@ class Parser
             'citySupplier' => '',
             'countryCodeSupplier' => '',
             'currency' => '',
-            'orderDetails' => [] // This will hold order line details
+            'orderDetails' => [] 
         ];
 
         $currentDetail = null; // Temporary variable to hold item details

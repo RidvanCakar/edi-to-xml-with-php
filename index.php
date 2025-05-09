@@ -10,52 +10,59 @@ use Ridvan\EdiToXml\XmlGenerator;
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-// Paths for input, output, and archive directories
 $inbox = $_ENV['INBOX_DIR'];
 $outbox = $_ENV['OUTBOX_DIR'];
 $archive = $_ENV['ARCHIVE_DIR'];
+$error = $_ENV['ERROR_DIR'];
 $logFile = $_ENV['LOG_FILE'];
 
-// Initialize logger with a specified file path for logs
+// Initialize logger
 $log = LoggerFactory::create('ftp_edifact', $logFile);
 $log->info("Process started.");
 
-// Get list of EDI files from the inbox directory
+// Get all EDI files
 $ediFiles = array_merge(
     glob($inbox . '/*.EDI'),
     glob($inbox . '/*.edi')
 );
 
-// Check if there are any EDI files, if not log an error and exit
+// No files? Log and exit
 if (empty($ediFiles)) {
     $log->error("No EDI files found.");
     exit;
 }
 
-// Select the first EDI file found
-$ediFile = $ediFiles[0];
-$ediFileName = basename($ediFile);
-$log->info("EDI file found: $ediFileName");
-
-// Read the segments from the EDI file
-$segments = explode("'", file_get_contents($ediFile));
-
-// Parse the EDI segments using the Parser class
+// Initialize Parser and XmlGenerator once
 $parser = new Parser($log);
-$ediData = $parser->parse($segments);
-
-// Generate the XML output using the XmlGenerator class
 $xmlGenerator = new XmlGenerator($log);
-$xmlOutput = $xmlGenerator->generate($ediData);
 
-// Save the generated XML to the output directory with a timestamped filename
-$xmlPath = $outbox . '/outXML_' . time() . '.xml';
-file_put_contents($xmlPath, $xmlOutput);
-$log->info("XML file created: $xmlPath");
+// Loop through all EDI files
+foreach ($ediFiles as $ediFile) {
+    $ediFileName = basename($ediFile);
+    $log->info("Processing EDI file: $ediFileName");
 
-// Attempt to move the processed EDI file to the archive directory
-if (rename($ediFile, $archive . '/' . $ediFileName)) {
-    $log->info("EDI file archived.");
-} else {
-    $log->error("Failed to archive EDI file.");
+    try {
+        // Read and parse the segments
+        $segments = $parser->readSegmentsFromFile($ediFile);
+        $ediData = $parser->parse($segments);
+        $xmlOutput = $xmlGenerator->generate($ediData);
+
+        // Output path: include timestamp + uniqid to avoid collision
+        $xmlPath = $outbox . '/outXML_' . time() . '_' . uniqid() . '.xml';
+        file_put_contents($xmlPath, $xmlOutput);
+        $log->info("XML file created: $xmlPath");
+
+        // Move to archive
+        if (rename($ediFile, $archive . '/' . $ediFileName)) {
+            $log->info("Archived EDI file: $ediFileName");
+        } else {
+            $log->error("Failed to archive EDI file: $ediFileName");
+        }
+    } catch (\Throwable $e) {
+        $log->error("Error processing $ediFileName: " . $e->getMessage());
+        // Optionally move to error folder
+        rename($ediFile, $error . '/' . $ediFileName);
+    }
 }
+
+$log->info("All files processed.");

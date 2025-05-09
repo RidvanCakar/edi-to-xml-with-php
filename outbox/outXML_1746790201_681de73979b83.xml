@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<OrderRequest>
+    <OrderHeader>
+        <Snrf>173831239</Snrf>
+        <DocumentDate>20250414</DocumentDate>
+        <DocumentTime>1625</DocumentTime>
+        <SenderMailboxId>5940477285003</SenderMailboxId>
+        <ReceiverMailboxId>5940477475206</ReceiverMailboxId>
+        <OrderType>Original order</OrderType>
+        <OrderNumber>0146980931</OrderNumber>
+        <OrderDate>20250414</OrderDate>
+        <DeliveryDate />
+        <DeliveryDateEarliest />
+        <DeliveryDateLatest />
+        <FreeTextField>STORE MANUAL ORDER DR01</FreeTextField>
+        <PromotionDealNumber />
+        <GLNBuyer />
+        <NameBuyer />
+        <AddressBuyer />
+        <PostalCodeBuyer />
+        <CityBuyer />
+        <CountryCodeBuyer />
+        <GLNShipTo />
+        <NameShipTo />
+        <AddressShipTo />
+        <PostalCodeShipTo />
+        <CityShipTo />
+        <CountryCodeShipTo />
+        <GLNInvoicee />
+        <NameInvoicee />
+        <AddressInvoicee />
+        <PostalCodeInvoicee />
+        <CityInvoicee />
+        <CountryCodeInvoicee />
+        <GLNSupplier />
+        <SupplierCode />
+        <NameSupplier />
+        <AddressSupplier />
+        <PostalCodeSupplier />
+        <CitySupplier />
+        <CountryCodeSupplier />
+        <Currency />
+        <GLNBuyer />
+        <GLNShipTo />
+        <GLNSupplier />
+    </OrderHeader>
+    <OrderDetails>
+        <Detail>
+            <DetailNumber />
+            <ItemEanBarcode />
+            <ItemSenderCode />
+            <ItemReceiverCode>DCD771D2-QW</ItemReceiverCode>
+            <ItemDescription />
+            <ItemGroupId />
+            <ItemGrossWeight />
+            <ItemNetWeight />
+            <ItemOrderedQuantity />
+            <ItemOrderedQuantityUom />
+            <QuantityPerPack />
+            <PackageType />
+            <ItemGrossPrice />
+            <ItemNetPrice />
+            <ItemDeliveryDate />
+            <ItemBestBeforeDate />
+        </Detail>
+    </OrderDetails>
+</OrderRequest>
